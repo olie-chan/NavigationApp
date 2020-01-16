@@ -19,6 +19,18 @@ function DetailsScreen({ navigation }: any) {
 	return (
 		<View style={styles.container}>
 			<Text>Details Screen</Text>
+			<Button title="Go to the details screen again?"
+				type="outline"
+				onPress={() => navigation.push('Details')}
+			/>
+			<Button title="Go to Home"
+				type="outline"
+				onPress={() => navigation.navigate('Home')}
+			/>
+			<Button title="Go back"
+				type="outline"
+				onPress={() => navigation.goBack()}
+			/>
 		</View>
 	);
 }
