@@ -1,3 +1,5 @@
+const { join } = require('path');
+
 exports.config = {
     //
     // ====================
@@ -9,9 +11,6 @@ exports.config = {
     runner: 'local',
     port: 4723,
     //
-    // Override default path ('/wd/hub') for chromedriver service.
-    path: '/',
-    //
     // ==================
     // Specify Test Files
     // ==================
@@ -21,7 +20,7 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './__tests__/*.appium.test.js'
+        '__tests__/*.appium.test.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -50,17 +49,17 @@ exports.config = {
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
     capabilities: [{
-				automationName: "UiAutomator2",
-				deviceName: "Nexus_5X_API_29_x86", // This is name of your Simulator
-				platformName: "Android",
-				platformVersion: "10", // Android version of Simulator
-				orientation: "PORTRAIT",
-				maxInstances: 1,
-				app: "/Users/oliechan/exploratory/NavigationApp/app-release-unsigned.apk",
-				// absolute path to the apk goes here ^, I'm keeping it at
-				// root directory of this test project.
-				noReset: true,
-				newCommandTimeout: 240
+			automationName: "UiAutomator2",
+			deviceName: "Nexus_5X_API_29_x86", // This is name of your Simulator
+			platformName: "Android",
+			platformVersion: "10", // Android version of Simulator
+			orientation: "PORTRAIT",
+			maxInstances: 1,
+			app: join(process.cwd(), "/app-release.apk"),
+			// absolute path to the apk goes here ^, I'm keeping it at
+			// root directory of this test project.
+			noReset: true,
+			newCommandTimeout: 240
 		}],
     //
     // ===================
@@ -109,7 +108,7 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['chromedriver','appium'],
+    services: ['appium'],
 
     // Appium Service config
     // see details: https://webdriver.io/docs/appium-service.html
