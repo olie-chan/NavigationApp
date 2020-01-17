@@ -6,10 +6,12 @@ import { Button } from 'react-native-elements';
 
 function HomeScreen({ navigation }: any) {
 	return (
-		<View style={styles.container}>
+		<View style={styles.container} testID="app-root" accessibilityLabel="app-root">
 			<Text>Home Screen</Text>
 			<Button title="Go to the details screen"
 				type="outline"
+				testID="go-to-details-button"
+				accessibilityLabel="go-to-details-button"
 				onPress={() => navigation.navigate('Details', {
 					itemId: 123,
 					otherParam: 'anything that you want here',
@@ -18,6 +20,10 @@ function HomeScreen({ navigation }: any) {
 		</View>
 	);
 }
+HomeScreen.navigationOptions = {
+	title: 'Home screen'
+}
+
 function DetailsScreen({ navigation }: any) {
 	return (
 		<View style={styles.container}>
@@ -42,6 +48,10 @@ function DetailsScreen({ navigation }: any) {
 			<Button title="Go back"
 				type="outline"
 				onPress={() => navigation.goBack()}
+			/>
+			<Button title="Set the id to something else"
+				type="outline"
+				onPress={() => navigation.setParams({ itemId: Math.round (Math.random() * 100) })}
 			/>
 		</View>
 	);
